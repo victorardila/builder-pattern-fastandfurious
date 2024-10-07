@@ -1,17 +1,17 @@
 package com.design.patterns.build_method_fastandfurious.domain.builder;
 
 public interface IVehicleBuilder {
-    IVehicleBuilder setChasis(String chasis);
+    IVehicleBuilder color(String color);
 
-    IVehicleBuilder setEngine(String engine);
+    IVehicleBuilder assemblyDate(String assemblyDate);
 
-    IVehicleBuilder setUpholstery(String upholstery);
+    IVehicleBuilder assemblyNumber(String assemblyNumber);
 
-    IVehicleBuilder setColor(String color);
+    IVehicleBuilder chasis(String chasis);
 
-    IVehicleBuilder setAssemblyDate(String assemblyDate);
+    IVehicleBuilder engine(String engine);
 
-    IVehicleBuilder setAssemblyNumber(String assemblyNumber);
+    IVehicleBuilder upholstery(String upholstery);
 
     VehicleBuilder build();
 }

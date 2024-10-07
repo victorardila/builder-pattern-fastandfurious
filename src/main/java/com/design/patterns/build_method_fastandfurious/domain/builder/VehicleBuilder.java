@@ -8,6 +8,7 @@ public class VehicleBuilder {
     private String assemblyDate;
     private String assemblyNumber;
 
+    // Constructor con parámetros
     private VehicleBuilder(
             String chasis,
             String engine,
@@ -23,6 +24,7 @@ public class VehicleBuilder {
         this.assemblyNumber = assemblyNumber;
     }
 
+    // Constructor sin color
     private VehicleBuilder(
             String chasis,
             String engine,
@@ -36,36 +38,57 @@ public class VehicleBuilder {
         this.assemblyNumber = assemblyNumber;
     }
 
-    public VehicleBuilder setChasis(String chasis) {
+    // Metodos setter
+    public void setChasis(String chasis) {
         this.chasis = chasis;
-        return this;
     }
 
-    public VehicleBuilder setEngine(String engine) {
+    public void setEngine(String engine) {
         this.engine = engine;
-        return this;
     }
 
-    public VehicleBuilder setUpholstery(String upholstery) {
+    public void setUpholstery(String upholstery) {
         this.upholstery = upholstery;
-        return this;
     }
 
-    public VehicleBuilder setColor(String color) {
+    public void setColor(String color) {
         this.color = color;
-        return this;
     }
 
-    public VehicleBuilder setAssemblyDate(String assemblyDate) {
+    public void setAssemblyDate(String assemblyDate) {
         this.assemblyDate = assemblyDate;
-        return this;
     }
 
-    public VehicleBuilder setAssemblyNumber(String assemblyNumber) {
+    public void setAssemblyNumber(String assemblyNumber) {
         this.assemblyNumber = assemblyNumber;
-        return this;
     }
 
+    // Metodos getter
+    public String getChasis() {
+        return chasis;
+    }
+
+    public String getEngine() {
+        return engine;
+    }
+
+    public String getUpholstery() {
+        return upholstery;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getAssemblyDate() {
+        return assemblyDate;
+    }
+
+    public String getAssemblyNumber() {
+        return assemblyNumber;
+    }
+
+    // Metodo para construir el objeto
     @Override
     public String toString() {
         return "VehicleBuilder{" +
@@ -78,7 +101,8 @@ public class VehicleBuilder {
                 '}';
     }
 
-    public static class VehicleConcreteBuilder extends VehicleBuilder {
+    // Clase concreta (builder)
+    public static class VehicleConcreteBuilder implements IVehicleBuilder {
         private String chasis;
         private String engine;
         private String upholstery;
@@ -86,50 +110,55 @@ public class VehicleBuilder {
         private String assemblyDate;
         private String assemblyNumber;
 
-        @Override
-        public VehicleConcreteBuilder setChasis(String chasis) {
-            this.chasis = chasis;
-            return this;
+        public VehicleConcreteBuilder() {
+
         }
 
         @Override
-        public VehicleConcreteBuilder setEngine(String engine) {
-            this.engine = engine;
-            return this;
-        }
-
-        @Override
-        public VehicleConcreteBuilder setUpholstery(String upholstery) {
-            this.upholstery = upholstery;
-            return this;
-        }
-
-        @Override
-        public VehicleConcreteBuilder setColor(String color) {
+        public IVehicleBuilder color(String color) {
             this.color = color;
             return this;
         }
 
         @Override
-        public VehicleConcreteBuilder setAssemblyDate(String assemblyDate) {
+        public IVehicleBuilder chasis(String chasis) {
+            this.chasis = chasis;
+            return this;
+        }
+
+        @Override
+        public IVehicleBuilder engine(String engine) {
+            this.engine = engine;
+            return this;
+        }
+
+        @Override
+        public IVehicleBuilder upholstery(String upholstery) {
+            this.upholstery = upholstery;
+            return this;
+        }
+
+        @Override
+        public IVehicleBuilder assemblyDate(String assemblyDate) {
             this.assemblyDate = assemblyDate;
             return this;
         }
 
         @Override
-        public VehicleConcreteBuilder setAssemblyNumber(String assemblyNumber) {
+        public IVehicleBuilder assemblyNumber(String assemblyNumber) {
             this.assemblyNumber = assemblyNumber;
             return this;
         }
 
+        @Override
         public VehicleBuilder build() {
             return new VehicleBuilder(
-                    chasis,
-                    engine,
-                    upholstery,
-                    color,
-                    assemblyDate,
-                    assemblyNumber);
+                    this.chasis,
+                    this.engine,
+                    this.upholstery,
+                    this.color,
+                    this.assemblyDate,
+                    this.assemblyNumber);
         }
     }
 }
